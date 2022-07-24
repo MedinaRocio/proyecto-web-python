@@ -1,0 +1,42 @@
+{% extends 'webApp/plantilla_base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div style="float: right;">
+        {% include "carro/widget.html" %}
+    </div>
+    <div class="row">
+
+        {% for producto in mostrar_productos %}
+
+            <div class="col-md-3">
+
+                <div class="card" style="width:100%; margin: 3% 3%;">
+
+                    <img src="{{producto.imagen.url}}" class="card-img-top">
+
+                    <div class="card-body" style="text-align: center;">
+
+                        <h7 class="card-title"> {{producto.nombre}} </h7>
+                        <p class="card-text"> $&nbsp;{{producto.precio}} </p>
+
+                    </div>
+
+                    <div class="card-footer text-center">
+
+                        <a href="{% url 'carrito:agregar' producto.id %}" class= "btn btn-success"> Agregar al carrito </a>
+
+                    </div>
+
+                </div> <!--cierre div card-->
+
+            </div> <!--cierre div col-->
+            
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
